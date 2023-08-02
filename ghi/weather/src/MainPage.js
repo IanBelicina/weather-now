@@ -4,6 +4,23 @@ import { Link } from 'react-router-dom';
 
 function LocationColumn(props) {
 
+  async function handleRemoveLocation(locationID){
+    // event.preventDefault();
+
+
+
+
+    const url = `http://localhost:8000/api/locations/${locationID}/`;
+    const fetchConfig = {
+        method:"delete",
+    };
+    const response = await fetch(url, fetchConfig);
+    if (response.ok){
+        props.getLocations();
+    }
+}
+
+
     return (
       <div className="col">
         {props.list.map(data => {
@@ -33,7 +50,8 @@ function LocationColumn(props) {
                 <span className="temp">{parseInt(weather.temp)}°</span>
 
                 <div className="temp-scale">
-                    <span>fahrenheit</span>
+                    {/* <span>fahrenheit</span> */}
+                    <button onClick={() => handleRemoveLocation(location.id)} className="btn btn-danger">Remove</button>
                 </div>
                 </div>
             </div>
@@ -173,7 +191,7 @@ function MainPage({ locations, states, getLocations }){
         <div className="row d-flex justify-content-center">
           {locationColumns.map((locationList, index) => {
             return (
-              <LocationColumn key={index} list={locationList} />
+              <LocationColumn key={index} list={locationList} getLocations={getLocations} />
             );
           })}
         </div>
