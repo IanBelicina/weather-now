@@ -43,7 +43,7 @@ function LocationForm({ states, getLocations }){
     }
 
     return(
-        <div className="my-5 container">
+        <div className=" container">
         <div className="row">
             <div className="col">
             <div className="location-form-container shadow">

@@ -9,6 +9,11 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Use min-height instead of height */
+  max-width: 200vh;
+  background-color: black;
+  justify-content: space-between;
+  align-items: center; /* Center the content vertically */
+
 }
 
 .content {
@@ -29,6 +34,8 @@ body,
   border-radius: 23px;
   transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
   cursor: pointer;
+  margin: 50px; /* Add margin to create spacing between cards */
+
 }
 
 .card:hover {

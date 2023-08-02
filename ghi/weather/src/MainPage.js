@@ -90,7 +90,7 @@ function MainPage({ locations }){
 
     return(
         <>
-      <div className="px-4 py-5 my-5 mt-0 text-center bg-info">
+      <div className="px-4 py-5  mt-0 text-center bg-info">
         <img className="bg-white rounded shadow d-block mx-auto mb-4" src="/logo.svg" alt="" width="600" />
         <h1 className="display-5 fw-bold">Weather Locations</h1>
         <div className="col-lg-6 mx-auto">
@@ -101,7 +101,7 @@ function MainPage({ locations }){
         </div>
       </div>
       <div className="container">
-        <div className="row">
+        <div className="row d-flex justify-content-center">
           {locationColumns.map((locationList, index) => {
             return (
               <LocationColumn key={index} list={locationList} />
