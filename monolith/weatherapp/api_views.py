@@ -54,22 +54,36 @@ def api_list_locations(request):
         )
 
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET","DELETE"])
 def api_show_location(request, id):
-    location = Location.objects.get(id=id)
-    weather = get_weather_data(
-        location.city,
-        location.state
-    )
-    return JsonResponse(
-        {"location":location, "weather":weather},
-        encoder=LocationListEncoder,
-        safe=False
-    )
+    if request.method == "GET":
+        location = Location.objects.get(id=id)
+        weather = get_weather_data(
+            location.city,
+            location.state
+        )
+        return JsonResponse(
+            {"location":location, "weather":weather},
+            encoder=LocationListEncoder,
+            safe=False
+        )
+    else:
+        try:
+            location = Location.objects.get(id=id)
+            location.delete()
+            return JsonResponse(
+                {"deleted":True},
+                safe=False
+            )
+        except Location.DoesNotExist:
+            response = JsonResponse({"Message":"Location does not exist"})
+            response.status_code=404
+            return response
 
 
 @require_http_methods(["GET"])
 def api_list_states(request):
+
     states = State.objects.all()
     return JsonResponse(
         {"states":states},

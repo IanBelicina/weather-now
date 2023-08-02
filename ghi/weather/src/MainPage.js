@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import LocationForm from './LocationForm';
+
 
 function LocationColumn(props) {
 
@@ -11,28 +11,28 @@ function LocationColumn(props) {
           const weather = data.weather;
           return (
             <div key={location.id} >
-              <div class="card">
-                <div class="weather-container">
-                    <div class="cloud front">
-                    <span class="left-front"></span>
-                    <span class="right-front"></span>
+              <div className="card">
+                <div className="weather-container">
+                    <div className="cloud front">
+                    <span className="left-front"></span>
+                    <span className="right-front"></span>
                     </div>
-                    <span class="sun sunshine"></span>
-                    <span class="sun"></span>
-                    <div class="cloud back">
-                    <span class="left-back"></span>
-                    <span class="right-back"></span>
+                    <span className="sun sunshine"></span>
+                    <span className="sun"></span>
+                    <div className="cloud back">
+                    <span className="left-back"></span>
+                    <span className="right-back"></span>
                     </div>
                 </div>
 
-                <div class="card-header">
+                <div className="card-header">
                     <span>{location.city},{location.state}</span>
                     <span>{weather.description}</span>
                 </div>
 
-                <span class="temp">{parseInt(weather.temp)}°</span>
+                <span className="temp">{parseInt(weather.temp)}°</span>
 
-                <div class="temp-scale">
+                <div className="temp-scale">
                     <span>fahrenheit</span>
                 </div>
                 </div>
@@ -47,10 +47,49 @@ function LocationColumn(props) {
 
 
 
-function MainPage({ locations }){
+function MainPage({ locations, states, getLocations }){
 
 
     const [ locationColumns, setLocationColumns ] = useState([]);
+    const [ city, setCity] = useState('');
+    const [ state, setState] = useState('');
+
+    async function handleSubmit(event){
+      event.preventDefault();
+
+      const data = {};
+      data.city = city;
+      data.state = state;
+
+
+      const url = 'http://localhost:8000/api/locations/';
+      const fetchConfig = {
+          method:"post",
+          body: JSON.stringify(data),
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.ok){
+          const newLocation = await response.json();
+
+          setCity('');
+          setState('');
+          getLocations();
+      }
+
+  }
+
+    function handleCityChange(event){
+      const {value} = event.target;
+      setCity(value);
+    }
+
+    function handleStateChange(event){
+      const {value} = event.target;
+      setState(value);
+    }
 
 
     useEffect(() => {
@@ -91,6 +130,8 @@ function MainPage({ locations }){
       }, [locations])
 
 
+
+
     return(
         <>
       <div className="px-4 py-5  mt-0 text-center bg-info-custom">
@@ -103,31 +144,29 @@ function MainPage({ locations }){
 
 
 
-        {/* <form  id="create-shoe-form">
+        <form onSubmit={handleSubmit} id="create-location-form">
           <div className="row">
             <div className="col">
               <div className="form-floating mb-3">
-                <input  required placeholder="Model Name" type="text" id="modelName" name="modelName" className="form-control" />
-                <label htmlFor="modelName">Model Name</label>
+                <input value={city} onChange={handleCityChange} required placeholder="city" type="text" id="city" name="city" className="form-control" />
+                <label htmlFor="city">City</label>
               </div>
             </div>
             <div className="col">
               <div className="form-floating mb-3">
-                <input  required placeholder="Picture Url" type="text" id="Picture Url" name="Picture Url" className="form-control" />
-                <label htmlFor="Picture Url">Picture Url</label>
+              <select value={state} onChange={handleStateChange} name="state" id="state" className='form-select' required>
+                <option value="">Choose State</option>
+                {states.map(state => {
+                    return (
+                    <option key={state.id} value={state.abbreviation}>{state.abbreviation}</option>
+                    )
+                })}
+                </select>
               </div>
             </div>
           </div>
-          <button className="btn btn-lg btn-primary">Add</button>
-        </form> */}
-
-
-
-
-
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link to="newlocation/" className="btn btn-primary btn-lg px-4 gap-3 custom-button">Add a Location</Link>
-          </div>
+          <button className="btn btn-lg btn-primary custom-button">Add Location</button>
+        </form>
         </div>
       </div>
       <div className="container">

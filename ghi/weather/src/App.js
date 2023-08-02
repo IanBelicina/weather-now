@@ -43,10 +43,10 @@ function App() {
   }
   return (
     <BrowserRouter>
-      <Nav />
+      {/* <Nav /> */}
       {/* <div className="container"> */}
         <Routes>
-          <Route path="/" element={<MainPage locations={locations}/>} />
+          <Route path="/" element={<MainPage states={states} getLocations={getLocations} locations={locations}/>} />
           <Route path="newlocation/" element={<LocationForm states={states} getLocations={getLocations}/>}/>
         </Routes>
       {/* </div> */}
