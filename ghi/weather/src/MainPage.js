@@ -9,13 +9,32 @@ function LocationColumn(props) {
           const location = data.location;
           const weather = data.weather;
           return (
-            <div key={location.id} className="card mb-3 shadow">
-              <div className="card-body">
-                <h4 className="card-title">{location.city},{location.state}</h4>
-                <h5 className="card-subtitle mb-2 text-muted">
-                  {weather.temp} - {weather.description}
-                </h5>
-              </div>
+            <div key={location.id} >
+              <div class="card">
+                <div class="weather-container">
+                    <div class="cloud front">
+                    <span class="left-front"></span>
+                    <span class="right-front"></span>
+                    </div>
+                    <span class="sun sunshine"></span>
+                    <span class="sun"></span>
+                    <div class="cloud back">
+                    <span class="left-back"></span>
+                    <span class="right-back"></span>
+                    </div>
+                </div>
+
+                <div class="card-header">
+                    <span>{location.city},{location.state}</span>
+                    <span>{weather.description}</span>
+                </div>
+
+                <span class="temp">{weather.temp}°</span>
+
+                <div class="temp-scale">
+                    <span>fahrenheit</span>
+                </div>
+                </div>
             </div>
           );
         })}
@@ -73,14 +92,12 @@ function MainPage({ locations }){
         <>
       <div className="px-4 py-5 my-5 mt-0 text-center bg-info">
         <img className="bg-white rounded shadow d-block mx-auto mb-4" src="/logo.svg" alt="" width="600" />
-        <h1 className="display-5 fw-bold">Locations</h1>
+        <h1 className="display-5 fw-bold">Weather Locations</h1>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
-            Example text
-          </p>
-          {/* <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link to="/attendees/new" className="btn btn-primary btn-lg px-4 gap-3">Attend a conference</Link>
-          </div> */}
+
+          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <Link to="newlocation/" className="btn btn-primary btn-lg px-4 gap-3">Add a Location</Link>
+          </div>
         </div>
       </div>
       <div className="container">

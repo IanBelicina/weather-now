@@ -46,7 +46,7 @@ function LocationForm({ states, getLocations }){
         <div className="my-5 container">
         <div className="row">
             <div className="col">
-            <div className="card shadow">
+            <div className="location-form-container shadow">
                 <div className="card-body">
                 <form onSubmit={handleSubmit} id="create-location-form">
                     <h1 className="card-title">Search a location</h1>

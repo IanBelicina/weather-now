@@ -50,7 +50,7 @@ function App() {
           <Route path="newlocation/" element={<LocationForm states={states} getLocations={getLocations}/>}/>
         </Routes>
       {/* </div> */}
-      <Footer className="footer"/>
+      {/* <Footer className="footer"/> */}
     </BrowserRouter>
   );
 }
