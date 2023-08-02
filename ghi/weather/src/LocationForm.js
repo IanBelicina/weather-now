@@ -46,10 +46,10 @@ function LocationForm({ states, getLocations }){
         <div className=" container">
         <div className="row">
             <div className="col">
-            <div className="location-form-container shadow">
+            <div className="location-form-container shadow custom-form-color"  >
                 <div className="card-body">
                 <form onSubmit={handleSubmit} id="create-location-form">
-                    <h1 className="card-title">Search a location</h1>
+                    <h1 className="card-title weather-heading">Search a location</h1>
                     <div className="col">
                         <div className="form-floating mb-3">
                         <input value={city} onChange={handleCityChange} required placeholder="city" type="text" id="city" name="city" className="form-control" />
@@ -69,7 +69,7 @@ function LocationForm({ states, getLocations }){
                     </div>
 
 
-                    <button className="btn btn-lg btn-primary">Find</button>
+                    <button className="btn btn-lg btn-primary custom-button-find">Add</button>
                 </form>
                 </div>
             </div>

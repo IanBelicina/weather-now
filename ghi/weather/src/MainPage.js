@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LocationForm from './LocationForm';
 
 function LocationColumn(props) {
 
@@ -29,7 +30,7 @@ function LocationColumn(props) {
                     <span>{weather.description}</span>
                 </div>
 
-                <span class="temp">{weather.temp}°</span>
+                <span class="temp">{parseInt(weather.temp)}°</span>
 
                 <div class="temp-scale">
                     <span>fahrenheit</span>
@@ -50,6 +51,8 @@ function MainPage({ locations }){
 
 
     const [ locationColumns, setLocationColumns ] = useState([]);
+
+
     useEffect(() => {
         async function getLocationDetails() {
           try {
@@ -90,13 +93,40 @@ function MainPage({ locations }){
 
     return(
         <>
-      <div className="px-4 py-5  mt-0 text-center bg-info">
+      <div className="px-4 py-5  mt-0 text-center bg-info-custom">
         <img className="bg-white rounded shadow d-block mx-auto mb-4" src="/logo.svg" alt="" width="600" />
-        <h1 className="display-5 fw-bold">Weather Locations</h1>
+        <h1 className="display-5 fw-bold weather-heading">Weather Locations</h1>
         <div className="col-lg-6 mx-auto">
 
+
+
+
+
+
+        {/* <form  id="create-shoe-form">
+          <div className="row">
+            <div className="col">
+              <div className="form-floating mb-3">
+                <input  required placeholder="Model Name" type="text" id="modelName" name="modelName" className="form-control" />
+                <label htmlFor="modelName">Model Name</label>
+              </div>
+            </div>
+            <div className="col">
+              <div className="form-floating mb-3">
+                <input  required placeholder="Picture Url" type="text" id="Picture Url" name="Picture Url" className="form-control" />
+                <label htmlFor="Picture Url">Picture Url</label>
+              </div>
+            </div>
+          </div>
+          <button className="btn btn-lg btn-primary">Add</button>
+        </form> */}
+
+
+
+
+
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link to="newlocation/" className="btn btn-primary btn-lg px-4 gap-3">Add a Location</Link>
+            <Link to="newlocation/" className="btn btn-primary btn-lg px-4 gap-3 custom-button">Add a Location</Link>
           </div>
         </div>
       </div>

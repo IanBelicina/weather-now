@@ -1,3 +1,5 @@
+
+
 html,
 body,
 #root {
@@ -10,10 +12,17 @@ body,
   flex-direction: column;
   min-height: 100vh; /* Use min-height instead of height */
   max-width: 200vh;
-  background-color: black;
+  background-color: #18303c;
   justify-content: space-between;
   align-items: center; /* Center the content vertically */
 
+}
+.bg-info-custom{
+  background-color: #18303c;
+}
+
+.weather-heading{
+  color: white;
 }
 
 .content {
@@ -24,12 +33,40 @@ body,
   flex-shrink: 0;
 }
 
+.custom-button{
+  background-color: #527b8e;
+  border-color: #527b8e;
+  color: white;
+
+}
+
+.custom-button:hover{
+  background-color: #527b8e;
+  border-color: #527b8e;
+  color: white;
+
+}
+
+.custom-button-find{
+  background-color: #24485a;
+  border-color: #24485a;
+  color: white;
+
+}
+
+.custom-button-find:hover{
+  background-color: #24485a;
+  border-color: #24485a;
+  color: white;
+
+}
+
 .card {
   width: 350px;
   height: 235px;
   position: relative;
   padding: 25px;
-  background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #FFF7B1 0%, rgba(255, 255, 255, 0) 71.88%), #FFFFFF;
+  background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #527b8e 0%, rgba(255, 255, 255, 0) 71.88%), #FFFFFF;
   box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01), 0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09), 0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
   border-radius: 23px;
   transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
@@ -121,4 +158,17 @@ body,
   font-size: 13px;
   line-height: 134.49%;
   color: rgba(87, 77, 51, 0.66);
+}
+
+
+.custom-form-color{
+  background: #527b8e;
+}
+
+.location-form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  /* min-height: 100vh; */
 }
