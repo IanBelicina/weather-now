@@ -5,11 +5,6 @@ import { Link } from 'react-router-dom';
 function LocationColumn(props) {
 
   async function handleRemoveLocation(locationID){
-    // event.preventDefault();
-
-
-
-
     const url = `http://localhost:8000/api/locations/${locationID}/`;
     const fetchConfig = {
         method:"delete",
@@ -19,8 +14,6 @@ function LocationColumn(props) {
         props.getLocations();
     }
 }
-
-
     return (
       <div className="col">
         {props.list.map(data => {
@@ -50,8 +43,13 @@ function LocationColumn(props) {
                 <span className="temp">{parseInt(weather.temp)}°</span>
 
                 <div className="temp-scale">
-                    {/* <span>fahrenheit</span> */}
-                    <button onClick={() => handleRemoveLocation(location.id)} className="btn btn-danger">Remove</button>
+                    {/* <button onClick={() => handleRemoveLocation(location.id)} className="btn btn-danger">Remove</button> */}
+                    <button onClick={() => handleRemoveLocation(location.id)} class="btn">
+                      <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
+                      <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
+                    </svg>
+                    </button>
+
                 </div>
                 </div>
             </div>
@@ -171,8 +169,8 @@ function MainPage({ locations, states, getLocations }){
               </div>
             </div>
             <div className="col">
-              <div className="form-floating mb-3">
-              <select value={state} onChange={handleStateChange} name="state" id="state" className='form-select' required>
+              <div className="form-floating mb-3 select-container">
+              <select value={state} onChange={handleStateChange} name="state" id="state" className='form-select ' required>
                 <option value="">Choose State</option>
                 {states.map(state => {
                     return (
@@ -183,7 +181,7 @@ function MainPage({ locations, states, getLocations }){
               </div>
             </div>
           </div>
-          <button className="btn btn-lg btn-primary custom-button">Add Location</button>
+          <button className=" btn-lg custom-button">Add Location</button>
         </form>
         </div>
       </div>
