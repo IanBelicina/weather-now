@@ -21,4 +21,89 @@ WeatherNow is a dynamic web app for real-time weather info. Built with Python, D
       - npm start
     - This will open a new window in your browser running the react application.
 
+## RESTful CRUD APIs
+Below is a table of how you can access the endpoints used to create the application and examples of expected input and output json responses.
+
+
+| Action                     | Method | URL                                                 |
+| -------------------------- | ------ | --------------------------------------------------- |
+| Get all locations   | GET    | http://localhost:8000/api/locations/  |
+| Get location                | GET    | http://localhost:8000/api/locations/{int: location_id}/ |
+| Delete location  | DELETE | http://localhost:8000/api/locations/{int: location_id}/ |
+| Create location  | POST   | http://localhost:8000/api/locations/             |
+
+
+### Get all locations
+
+Response body:
+
+```
+{
+	"locations": [
+		{
+			"id": 1,
+			"city": "Seattle",
+			"state": "WA"
+		},
+		{
+			"id": 2,
+			"city": "Portland",
+			"state": "OR"
+		}
+	]
+}
+```
+
+### Get location
+
+Endpoint input: {int: location_id}
+
+Response body:
+
+```
+{
+	"location": {
+		"id": 1,
+		"city": "Seattle",
+		"state": "WA"
+	},
+	"weather": {
+		"description": "clear sky",
+		"temp": 66.92
+	}
+}
+```
+
+### Delete location
+
+Endpoint input: {int: location_id}
+
+Response body:
+
+```
+{
+	"deleted": true
+}
+```
+
+### Create location
+
+Input body:
+
+```
+{
+	"city":"Seattle",
+	"state": "WA"
+}
+```
+
+Response body:
+
+```
+{
+	"id": 1,
+	"city": "Seattle",
+	"state": "WA"
+}
+```
 
